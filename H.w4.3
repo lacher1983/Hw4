@@ -1,0 +1,53 @@
+#3
+"""
+Реализуйте класс BankAccount:
+- Приватные атрибуты:
+__balance,
+__account_number.
+- Геттеры для баланса и номера счета. Сеттер только для баланса (с проверкой, что баланс не может быть отрицательным).
+- Статистический метод generate_account_number(), который возвращает случайный 10-значный номер счета.
+- Метод класса create_account(cls,initial_balance), который создает аккаунт с сгенерированным номером.
+ 
+accout = BankAccount.create_account(1000)
+print(account.ballance)
+# 1000account ballance = -500
+# ValueError
+"""
+import random
+ 
+class BankAccount:
+    def __init__(self, account_number, balance):
+        self.__account_number = account_number
+        self.__balance = balance
+        
+    @property
+    def balance(self):
+        return self.__balance
+        
+    @property
+    def account_number(self):
+        return self.__account_number
+        
+    @balance.setter
+    def balance(self, value):
+        if value < 0:
+            raise ValueError ("Balance can not be negative")
+        self.__balance = value
+    
+    @staticmethode
+    def generate_account_number():
+        return random.randint(10**9, 10**10 - 1)
+        
+    @classmethod
+    def create_account(cls, initial_balance):
+        if initial_balance < 0:
+            raise ValueError("Initial balance can not be negative")
+        account_number = cls.generate_account_number()
+        return cls(account_number, initial_balance)
+        
+account = BankAccount.create_account(1000)
+print(account.balance) # 1000
+try:
+    account.balance = -500
+except ValueError as e:
+    print(e) # Balance can not be negative
