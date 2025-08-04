@@ -20,7 +20,7 @@ class Temperature:
     def celsius(self, value):
         if value < -273.15:
             raise ValueError ("Temperature can not be below absolute zero (-273.15 C)")
-        self.__celsius - value
+        self.__celsius = value
     
     @property
     def fahrenheit(self):
