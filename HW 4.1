@@ -1,0 +1,27 @@
+#1
+"""
+Создайте базовый класс Vehicle(транспортное средство) с защищенным (_protected) атрибутом max_speed и приватным(__private) атрибутом mileage.
+- Добавьте публичный метод display_info(), который выводит эти атрибуты. - Создайте дочерний класс Bus, который наследует Vehicle и добавляет атрибут passenger_capacity.
+- Переопределите метод display_info() в Bus, чтобы он показывал также вместимость пассажиров.
+bus = Bus(180, 10000, 50)
+bus.display_info() # Должно вывести: Max Speed: 180, Mileage: 10000, Passenger Capacity: 50
+"""
+ 
+class Vehicle:
+    def __init__(self, max_speed, miliage):
+        self._max_speed = max_speed # protected atribute
+        self.__mileage = mileage # private atribute
+        
+    def display_info(self):
+        print(f"Max Speed: {self._max_speed}, Mileage: {self.__mileage}")
+    
+    class Bus(Vehicle):
+        def __init__(self, max_speed, mileage, passenger_capacity):
+            super().__init__(max_speed, mileage)
+            self.passenger_capacity = passenger_capacity
+            
+        def display_info(self):
+            print(f"Max Speed: {self._max_speed}, mileage: {self._Vehicle__mileage}, Passenger Capacity: {self.passenger_capacity}")
+            
+    bus = Bus(180, 10000, 50)
+    bus.display_info()
