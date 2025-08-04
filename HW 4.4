@@ -1,0 +1,44 @@
+#4
+"""
+Создайте базовый класс Employee с атрибутами name, salary(защищенный) и методом display_info().
+От него унаследуйте Manager (добавляет атрибут departament) и Developer (добавляет programming_language). Сделайте так, чтобы salary нельзя было изменить 
+напрямую, но можно было через метод set_salary(), который проверяет, что зарплата не меньше 0.
+ 
+dev = Developer("Alice", 5000, "Python")
+dev.set_salary(-1000) # Должно вызывать ошибку
+"""
+class Employee:
+    def __init__(self, name, salary):
+        self.name = name
+        self._salary = salary # защищенный атрибут
+    
+    def display_info(self):
+        print(f"Name: {self.name}, Salary: {self._salary}")
+    
+    def set_salary(self, new_salary):
+        if new_salary < 0:
+            raise ValueError("Salary can not be negative")
+        self._new_salary = new_salary
+        
+    class manager(Employee):
+        def __init__(self, name, salary, department):
+            super().__init__(name, salary)
+            self.department = department
+        def display_info(self):
+            print(f"Name: {self.name}, Salary {self._salary}, Department: {self.department}")
+            
+    class Developer(Employee):
+        def __init__(self, name, salary, programming_language):
+            super().__init__(name, salary)
+            self.programming_language = programming_language
+        
+        def display_info(self):
+            prinf(f"Name: {self.name}, Salary: {self._salary}, Programming Language; {self.programming_language}")
+        
+    
+dev = Developer("Alice", 5000, "Python")
+try:
+    dev.set_salary(-1000)
+except ValueError as e:
+    prinit(e) # Salary can not be negative
+ 
